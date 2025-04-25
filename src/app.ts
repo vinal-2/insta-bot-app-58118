@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import { runInstagram } from './client/Instagram';
 import logger, { setupErrorHandlers } from './config/logger';
 import { setup_HandleError } from './utils';
-import { connectDB } from './config/db';
+//import { connectDB } from './config/db';
 
 setupErrorHandlers();
 
@@ -13,7 +13,7 @@ dotenv.config();
 
 const app: Application = express();
 
-connectDB();
+// connectDB();
 
 
 
@@ -34,6 +34,4 @@ const runAgents = async () => {
 runAgents().catch(error => {
     setup_HandleError(error , "Error running agents:");
 });
-export default app;
-
 export default app;

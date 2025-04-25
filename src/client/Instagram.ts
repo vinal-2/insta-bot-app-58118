@@ -1,4 +1,3 @@
-
 import { Browser, DEFAULT_INTERCEPT_RESOLUTION_PRIORITY } from "puppeteer";
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
@@ -40,8 +39,6 @@ async function runInstagram(): Promise<void> {
     }
     const page = await browser.newPage();
     // await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 1 });
-    const IGusernameVar = IGusername;
-    const IGpasswordVar = IGpassword;
 
     // Set a random PC user-agent
     const userAgent = new UserAgent({ deviceCategory: "desktop" });
@@ -80,12 +77,6 @@ async function runInstagram(): Promise<void> {
     // Optionally take a screenshot after loading the page
     await page.screenshot({ path: "logged_in.png" });
 
-    // // Navigate to the Instagram homepage
-    // await page.goto("https://www.instagram.com/");
-
-    // Interact with the first post
-    await interactWithPosts(page);
-
     // Close the browser
     await browser.close();
     await server.close(true); // Stop the proxy server and close connections
@@ -99,8 +90,8 @@ const loginWithCredentials = async (page: any, browser: Browser) => {
         await page.waitForSelector('input[name="username"]');
 
         // Fill out the login form
-        await page.type('input[name="username"]', IGusernameVar); // Replace with your username
-        await page.type('input[name="password"]', IGpasswordVar); // Replace with your password
+        await page.type('input[name="username"]', IGusername); // Use IGusername directly
+        await page.type('input[name="password"]', IGpassword); // Use IGpassword directly
         await page.click('button[type="submit"]');
 
         // Wait for navigation after login
@@ -227,13 +218,4 @@ async function interactWithPost(page: any, url: string) {
     }
 }
 
-async function interactWithPosts(page: any) {
-   
-    //this is not used anymore, will be deleted in the next steps
-    console.log("This code is not used anymore.")
-}
-
-
-
 export { runInstagram };
-
